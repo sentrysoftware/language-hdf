@@ -1,0 +1,645 @@
+'scopeName': 'source.hdf'
+'name': 'HDF'
+'fileTypes': ['hdfs', 'hhdf']
+
+'patterns': [
+
+  # Numbers
+  {
+      'match': '\\b(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))\\b'
+      'name': 'constant.numeric.hdf'
+  },
+
+  # "Default" (as the default value in translation tables)
+  {
+    'match': '(?i)\\((default)\\)'
+    'captures':
+      '1':
+        'name': 'constant.language.hdf'
+  },
+
+  # Strings, where double-double quotes is the escape version of double quotes
+  {
+      'begin': '"'
+      'beginCaptures':
+          '0':
+              'name': 'punctuation.definition.string.begin.hdf'
+      'end': '"'
+      'endCaptures':
+          '0':
+              'name': 'punctuation.definition.string.end.hdf'
+      'name': 'string.quoted.single.hdf'
+      'patterns': [
+          {
+              'match': '""'
+              'name': 'constant.character.escape.hdf'
+          }
+      ]
+  },
+
+  # #include
+  {
+    'match': '(?x)(?i)
+      ^\\s*
+      (\\#include)\\b
+      (
+        \\s+(\\S+)\\b\\s*
+      )?
+    '
+    'captures':
+      '1':
+        'name': 'keyword.control.hdf'
+      '3':
+        'name': 'variable.parameter.hdf'
+  },
+
+  # #define
+  {
+    'match': '(?x)(?i)
+      ^\\s*
+      (\\#define)\\b
+      (
+        \\s+(\\S+)\\b
+        (
+          \\s+(.*)
+        )?
+      )?
+    '
+    'captures':
+      '1':
+        'name': 'keyword.control.hdf'
+      '3':
+        'name': 'variable.parameter.hdf'
+      '5':
+        'name': 'constant.language.hdf'
+  },
+
+  # %References%
+  {
+      'begin': '%'
+      'beginCaptures':
+          '0':
+              'name': 'punctuation.definition.string.begin.hdf'
+      'end': '%'
+      'endCaptures':
+          '0':
+              'name': 'punctuation.definition.string.end.hdf'
+      'name': 'string.quoted.other.hdf'
+  },
+
+  # Comments
+  {
+    'match': '//.*$'
+    'name': 'comment'
+  },
+
+  # EmbeddedFile
+  {
+      'begin': '(?i)embeddedfile\\(([0-9]+)\\):'
+      'beginCaptures':
+          '0':
+              'name': 'entity.name.function'
+          '1':
+              'name': 'constant.numeric.hdf'
+      'end': '(?i)embeddedfile\\(([0-9]+)\\)\\.end'
+      'endCaptures':
+          '0':
+              'name': 'entity.name.function'
+          '1':
+              'name': 'constant.numeric.hdf'
+      'name': 'meta.function'
+  },
+
+  # hdf header section
+  {
+    'match': '(?x)(?i)
+      ^\\s*
+      (hdf)\\b
+      (
+        \\.(displayname
+        |typicalplatform
+        |relieson
+        |comments
+        |remotesupport
+        |localsupport
+        |appliestoos
+        |supersedes)\\b
+      )?
+      '
+    'captures':
+      '1':
+        'name': 'storage.type.hdf'
+      '3':
+        'name': 'variable.parameter.hdf'
+  },
+
+  # Sudo
+  {
+    'match': '(?x)(?i)
+      ^\\s*
+      (sudo)\\b
+      (
+        \\(([0-9]+)\\)
+        (
+          \\.(command)\\b
+        )?
+      )?
+    '
+    'captures':
+      '1':
+        'name': 'entity.name.function.hdf'
+      '3':
+        'name': 'constant.numeric.hdf'
+      '5':
+        'name': 'variable.parameter.hdf'
+  },
+
+  # Detection criteria:
+  # e.g.: Detection.Criteria(1).Type="SnmpGetNext"
+  {
+    'match': '(?x)(?i)
+      ^\\s*
+      (detection)\\b
+      (
+        \\.(criteria)\\b
+        (
+          \\(([0-9]+)\\)
+          (
+            \\.
+            (
+              type
+              |errormessage
+              |exclude
+              |keeponly
+              |servicename
+              |processcommandline
+              |snmpget
+              |snmpgetnext
+              |expectedresult
+              |wbemquery
+              |wbemnamespace
+              |commandline
+              |timeout
+              |executelocally
+              |port
+              |query
+              |url
+              |method
+              |header
+              |body
+              |authenticationtoken
+              |resultcontent
+              |forceserialization
+            )\\b
+          )?
+        )?
+      )?
+      '
+    'captures':
+      '1':
+        'name': 'storage.type.hdf'
+      '3':
+        'name': 'entity.name.function.hdf'
+      '5':
+        'name': 'constant.numeric.hdf'
+      '7':
+        'name': 'variable.parameter.hdf'
+  },
+
+  # Source
+  #
+  # Can be part of Collect or Discovery of any class
+  # e.g.:
+  # Enclosure.Discovery.Source(1).Type="Wbem"
+  # PhysicalDisk.Collect.Source(2).WbemQuery="SELECT __Path FROM ..."
+  {
+    'match': '(?x)(?i)
+      \\.(source)\\b
+      (
+        \\(([0-9]+)\\)
+        (
+          \\.
+          (
+            forceserialization
+
+            |type
+
+            |snmpoid
+
+            |snmptableoid
+            |snmptableselectcolumns
+
+            |wbemquery
+            |wbemnamespace
+
+            |commandline
+            |timeout
+            |executelocally
+            |excluderegexp
+            |keeponlyregexp
+            |removeheader
+            |removefooter
+            |separators
+            |selectcolumns
+
+            |lefttable
+            |righttable
+            |leftkeycolumn
+            |rightkeycolumn
+            |defaultrightline
+            |keytype
+
+            |table1
+            |table2
+            |table3
+            |table4
+            |table5
+
+            |query
+            |query1
+            |query2
+            |query3
+            |query4
+            |query5
+            |query6
+            |query7
+            |query8
+            |query9
+            |query10
+            |query11
+            |query12
+            |query13
+            |query14
+            |query15
+            |excluderegexp
+            |keeponlyregexp
+            |selectcolumns
+
+            |port
+            |excluderegexp
+            |keeponlyregexp
+            |removeheader
+            |removefooter
+            |separators
+            |selectcolumns
+
+            |url
+            |method
+            |body
+            |header
+            |authenticationtoken
+            |resultcontent
+          )\\b
+        )?
+      )?
+    '
+    'captures':
+      '1':
+        'name': 'entity.name.function.hdf'
+      '3':
+        'name': 'constant.numeric.hdf'
+      '5':
+        'name': 'variable.parameter.hdf'
+  },
+
+  # TelnetInteractive steps
+  #
+  # Can be part of Detection.Criteria or Source type "TelnetInteractive"
+  # e.g.:
+  # Enclosure.Discovery.Source(1).Step(1).Type="WaitForPrompt"
+  {
+    'match': '(?x)(?i)
+      \\.(step)\\b
+      (
+        \\(([0-9]+)\\)
+        (
+          \\.
+          (
+            telnetonly
+
+            |type
+            |capture
+            |duration
+            |text
+            |timeout
+
+          )\\b
+        )?
+      )?
+    '
+    'captures':
+      '1':
+        'name': 'entity.name.function.hdf'
+      '3':
+        'name': 'constant.numeric.hdf'
+      '5':
+        'name': 'variable.parameter.hdf'
+  },
+
+  # Compute
+  #
+  # Can be attached to any source
+  # e.g.:
+  # Enclosure.Discovery.Source(1).Compute(1).Type="Translate"
+  # PhysicalDisk.Collect.Source(2).Compute(1).TranslationTable="MyTranslatation"
+  {
+    'match': '(?x)(?i)
+      (compute)\\b
+      (
+        \\(([0-9]+)\\)(
+          \\.
+          (
+            type
+
+            |column
+
+            |translationtable
+
+            |regexp
+            |valuelist
+
+            |awkscript
+            |excluderegexp
+            |keeponlyregexp
+            |separators
+            |selectcolumns
+
+            |string
+
+            |replaceby
+            |replace
+
+            |subcolumn
+            |subseparators
+
+            |propertyname
+
+            |multiplyby
+            |divideby
+            |add
+            |substract
+            |and
+
+            |start
+            |length
+
+            |columnnumbers
+
+            |bitlist
+            |bittranslationtable
+
+            |conversiontype
+
+            |translationtable
+            |arrayseparator
+            |resultseparator
+
+            |entrykey
+            |properties
+            |separator
+          )\\b
+        )?
+      )?
+    '
+    'captures':
+      '1':
+        'name': 'entity.name.function.hdf'
+      '3':
+        'name': 'constant.numeric.hdf'
+      '5':
+        'name': 'variable.parameter.hdf'
+  },
+
+  # Discovery and Collect
+  # Can be part of any class
+  # e.g.:
+  # Blade.Discovery.InstanceTable=%...%
+  # Blade.Discovery.Instance.DeviceID=InstanceTable.Column(1)
+  # Temperature.Collect.ValueTable=%...%
+  # Temperature.Collect.Temperature=ValueTable.Column(2)
+  {
+    'match': '(?x)(?i)
+      ^\\s*
+      (
+        enclosure|
+        diskcontroller|
+        diskenclosure|
+        cpu|
+        memory|
+        physicaldisk|
+        logicaldisk|
+        temperature|
+        voltage|
+        fan|
+        powersupply|
+        networkcard|
+        cpucore|
+        otherdevice|
+        blade
+      )\\b
+      (
+        (
+          \\.(discovery)\\b
+          (
+            \\.
+            (
+              (instancetable)\\b
+              |(
+                (instance)\\b
+                \\.
+                (
+                  deviceid
+                  |controllernumber
+                  |attachedtodeviceid
+                  |attachedtodevicetype
+                  |displayid
+
+                  |biosversion
+                  |model
+                  |serialnumber
+                  |type
+                  |vendor
+                  |additionalinformation1
+                  |additionalinformation2
+                  |additionalinformation3
+                  |firmwareversion
+                  |fantype
+                  |raidlevel
+                  |size
+                  |powersupplytype
+                  |temperaturetype
+                  |chemistry
+                  |bladename
+                  |blademodel
+                  |maximumspeed
+                  |powerconsumption
+                  |correctederrorwarningthreshold
+                  |correctederroralarmthreshold
+                  |driverversion
+                  |warningthreshold
+                  |alarmthreshold
+                  |percentwarningthreshold
+                  |percentalarmthreshold
+                  |color
+                  |onstatus
+                  |offstatus
+                  |blinkingstatus
+                  |alarmoncolor
+                  |warningoncolor
+                  |logicaldisktype
+                  |useforcapacityreport
+                  |localdevicename
+                  |remotedevicename
+                  |arrayname
+                  |expectedpathcount
+                  |wwn
+                  |errorcountwarningthreshold
+                  |errorcountalarmthreshold
+                  |devicetype
+                  |physicaladdress
+                  |physicaladdresstype
+                  |logicaladdress
+                  |logicaladdresstype
+                  |additionallabel
+                  |valuewarningthreshold
+                  |valuealarmthreshold
+                  |usagecountwarningthreshold
+                  |usagecountalarmthreshold
+                  |powersupplypower
+                  |robotictype
+                  |errorcountwarningthreshold
+                  |errorcountalarmthreshold
+                  |voltagetype
+                  |lowerthreshold
+                  |upperthreshold
+                  |bandwidth
+                  |devicehostname
+                  |remotephysicaladdress
+                  |remotephysicaladdresstype
+                  |name
+                  |availablepathwarning
+
+                  |(parameteractivation)\\b
+                  (
+                    \\.([a-z]+)
+                  )?
+                )?\\b
+              )
+            )
+          )?
+        )
+        |
+        (
+          \\.(collect)\\b
+          (
+            \\.(
+              type
+              |valuetable
+              |deviceid
+
+              |statusinformation
+              |status
+              |controllerstatus
+              |batterystatus
+              |temperature
+              |voltage
+              |speed
+              |currentspeed
+              |speedpercent
+              |errorcount
+              |predictedfailure
+              |errorpercent
+              |linkstatus
+              |usedwatts
+              |intrusionstatus
+              |charge
+              |usedtimepercent
+              |color
+              |linkspeed
+              |duplexmode
+              |receivedbytes
+              |transmittedbytes
+              |receivedpackets
+              |transmittedpackets
+              |movecount
+              |needscleaning
+              |mountcount
+              |unmountcount
+              |powerconsumption
+              |energyusage
+              |timeleft
+              |usagecount
+              |unallocatedspace
+              |availablepathcount
+              |availablepathinformation
+              |statusinformation
+              |harderrorcount
+              |mediaerrorcount
+              |devicenotreadyerrorcount
+              |nodeviceerrorcount
+              |transporterrorcount
+              |recoverableerrorcount
+              |illegalrequesterrorcount
+              |zerobuffercreditcount
+              |powerstate
+            )\\b
+          )?
+        )
+      )?
+    '
+    'captures':
+      '1':
+        'name': 'entity.name.class.hdf'
+      '4':
+        'name': 'storage.type.hdf'
+      '7':
+        'name': 'storage.type.hdf'
+      '9':
+        'name': 'storage.type.hdf'
+      '10':
+        'name': 'variable.parameter.hdf'
+      '15':
+        'name': 'storage.type.hdf'
+      '17':
+        'name': 'variable.parameter.hdf'
+  },
+
+  # InstanceTable.Column(n)
+  # ValueTable.Column(n)
+  {
+    'match': '(?x)(?i)
+      =\\s*
+      (instancetable|valuetable)\\b
+      (
+        \\.
+        (column)\\b
+        (
+          \\(([0-9]+)\\)
+        )?
+      )?
+    '
+    'captures':
+      '1':
+        'name': 'storage.type.hdf'
+      '3':
+        'name': 'entity.name.function.hdf'
+      '5':
+        'name': 'constant.numeric.hdf'
+  },
+
+  # Reference to EmbeddedFile
+  {
+    'match': '(?x)(?i)
+    =\\s*
+    (embeddedfile)
+    (
+      \\(([0-9]+)\\)
+    )?
+    '
+    'captures':
+      '1':
+        'name': 'entity.name.function.hdf'
+      '3':
+        'name': 'constant.numeric.hdf'
+  }
+]

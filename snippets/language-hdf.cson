@@ -1,0 +1,116 @@
+'.source.hdf':
+
+  'HDF header':
+    'prefix': 'hdf'
+    'body': 'hdf.DisplayName="${1:Display Name}"
+\nhdf.TypicalPlatform="${2:Typical Platform (e.g.: HP ProLiant)}"
+\nhdf.ReliesOn="${3:Instrumentation layer (prerequisites)}"
+\nhdf.AppliesToOS="${4:NT,Linux,OOB,RS6000,HP,Solaris,OSF1,VMS}"
+\nhdf.Comments="${5:This connector discovers the <components> of <platform> through <prerequisites>.}"
+\nhdf.RemoteSupport="${6:true}"
+\nhdf.LocalSupport="${7:true}"
+\nhdf.Supersedes="${8:MS_HW_connector1.hdf,MS_HW_connector2.hdf}"
+\n$9'
+
+  '#include':
+    'prefix': '#in'
+    'body': '#include ${1:MS_HW_connector.hdf}$2'
+
+  '#define':
+    'prefix': '#de'
+    'body': '#define ${1:CONSTANT_NAME} ${2:Constant Value}$3'
+
+  'sudo Entry':
+    'prefix': 'sudo'
+    'body': 'Sudo(${1:1}).Command="${2:command}"$3'
+
+#
+# Detection
+#
+
+  'Detection SNMP Get':
+    'prefix': 'detsnmpget'
+    'body': 'Detection.Criteria(${1:1}).Type="SNMP"
+\nDetection.Criteria(${1:1}).SnmpGet="${2:OID}"
+\nDetection.Criteria(${1:1}).ExpectedResult="${3:Regex}"
+\n$4'
+
+  'Detection SNMP GetNext':
+    'prefix': 'detsnmpgetnext'
+    'body': 'Detection.Criteria(${1:1}).Type="SNMP"
+\nDetection.Criteria(${1:1}).SnmpGetNext="${2:OID}"
+\nDetection.Criteria(${1:1}).ExpectedResult="${3:Regex}"
+\n$4'
+
+  'Detection OS':
+    'prefix': 'detos'
+    'body': 'Detection.Criteria(${1:1}).Type="OS"
+\nDetection.Criteria(${1:1}).KeepOnly="${2:NT,Linux,OOB,RS6000,HP,Solaris,OSF1,VMS}"
+\nDetection.Criteria(${1:1}).Exclude="${3:NT,Linux,OOB,RS6000,HP,Solaris,OSF1,VMS}"
+\n$4'
+
+  'Detection Windows Service':
+    'prefix': 'detservice'
+    'body': 'Detection.Criteria(${1:1}).Type="Service"
+\nDetection.Criteria(${1:1}).ServiceName="${2:ServiceName}"
+\n$3'
+
+  'Detection Process':
+    'prefix': 'detprocess'
+    'body': 'Detection.Criteria(${1:1}).Type="Process"
+\nDetection.Criteria(${1:1}).ProcessCommandLine="${2:Command Line}"
+\n$3'
+
+  'Detection WMI':
+    'prefix': 'detwmi'
+    'body': 'Detection.Criteria(${1:1}).Type="WMI"
+\nDetection.Criteria(${1:1}).WbemNamespace="${2:Automatic}"
+\nDetection.Criteria(${1:1}).WbemQuery="${3:SELECT Property FROM Class}"
+\nDetection.Criteria(${1:1}).ExpectedResult="${4:Regex}"
+\n$5'
+
+  'Detection WBEM':
+    'prefix': 'detwbem'
+    'body': 'Detection.Criteria(${1:1}).Type="WBEM"
+\nDetection.Criteria(${1:1}).WbemNamespace="${2:Automatic}"
+\nDetection.Criteria(${1:1}).WbemQuery="${3:SELECT Property FROM Class}"
+\nDetection.Criteria(${1:1}).ExpectedResult="${4:Regex}"
+\n$5'
+
+  'Detection Command Line':
+    'prefix': 'detcli'
+    'body': 'Detection.Criteria(${1:1}).Type="OsCommand"
+\nDetection.Criteria(${1:1}).CommandLine="${2:Command To Execute}"
+\n//Detection.Criteria(${1:1}).Timeout="${3:30}"
+\nDetection.Criteria(${1:1}).ExpectedResult="${4:Regex}"
+\n$5'
+
+  'Detection Interactive SSH':
+    'prefix': 'detinteractive'
+    'body': 'Detection.Criteria(${1:1}).Type="TelnetInteractive"
+\nDetection.Criteria(${1:1}).ExpectedResult="${2:Regex}"
+\n$3'
+
+  'Detection Cisco UCS':
+    'prefix': 'detucs'
+    'body': 'Detection.Criteria(${1:1}).Type="UCS"
+\nDetection.Criteria(${1:1}).Query="${2:SELECT property FROM class}"
+\nDetection.Criteria(${1:1}).ExpectedResult="${3:Regex}"
+\n$4'
+
+  'Detection IPMI':
+    'prefix': 'detipmi'
+    'body': 'Detection.Criteria(${1:1}).Type="IPMI"
+\n$2'
+
+  'Detection HTTP (REST)':
+    'prefix': 'dethttp'
+    'body': 'Detection.Criteria(${1:1}).Type="HTTP"
+\nDetection.Criteria(${1:1}).Url="${2:/path/to/query.php?format=json}"
+\nDetection.Criteria(${1:1}).Method="${3:GET}"
+\nDetection.Criteria(${1:1}).Header="${4:Content-type: application/json}"
+\nDetection.Criteria(${1:1}).Body="${5:{ resource=""/""; deep = false; }}"
+\nDetection.Criteria(${1:1}).AuthenticationToken="${6:%Enclosure.Discovery.Source(1)%}"
+\nDetection.Criteria(${1:1}).ResultContent="${7:body}"
+\nDetection.Criteria(${1:1}).ExpectedResult="${8:Regex}"
+\n$9'
