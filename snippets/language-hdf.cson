@@ -114,3 +114,215 @@
 \nDetection.Criteria(${1:1}).ResultContent="${7:body}"
 \nDetection.Criteria(${1:1}).ExpectedResult="${8:Regex}"
 \n$9'
+
+#
+# Enclosure
+#
+
+  'Discovery Enclosure':
+    'prefix': 'discencl'
+    'body': 'Enclosure.Discovery.InstanceTable=%Enclosure.Discovery.Source(_x_)%
+\nEnclosure.Discovery.Instance.DeviceID=InstanceTable.Column(_x_)
+\nEnclosure.Discovery.Instance.DisplayID=InstanceTable.Column(_x_)
+\nEnclosure.Discovery.Instance.Vendor=InstanceTable.Column(_x_)
+\nEnclosure.Discovery.Instance.Type=InstanceTable.Column(_x_) // e.g.: Computer, Storage, Switch, Blade Chassis, Chassis
+\nEnclosure.Discovery.Instance.Model=InstanceTable.Column(_x_)
+\nEnclosure.Discovery.Instance.SerialNumber=InstanceTable.Column(_x_)
+\nEnclosure.Discovery.Instance.BIOSVersion=InstanceTable.Column(_x_)
+\nEnclosure.Discovery.Instance.DeviceHostname=InstanceTable.Column(_x_)
+\n//Enclosure.Discovery.Instance.AdditionalInformation1=InstanceTable.Column(_x_)
+\n//Enclosure.Discovery.Instance.AdditionalInformation2=InstanceTable.Column(_x_)
+\n//Enclosure.Discovery.Instance.AdditionalInformation3=InstanceTable.Column(_x_)
+\n//Enclosure.Discovery.Instance.ParameterActivation.Status=InstanceTable.Column(_x_)
+\n//Enclosure.Discovery.Instance.ParameterActivation.IntrusionStatus=InstanceTable.Column(_x_)
+\n//Enclosure.Discovery.Instance.ParameterActivation.PowerConsumption=InstanceTable.Column(_x_)
+\n//Enclosure.Discovery.Instance.ParameterActivation.EnergyUsage=InstanceTable.Column(_x_)
+\n'
+
+  'Collect Enclosure':
+    'prefix': 'collencl'
+    'body': 'Enclosure.Collect.Type="MultiInstance" // or MonoInstance
+\n
+\nEnclosure.Collect.ValueTable=%Enclosure.Collect.Source(_x_)%
+\nEnclosure.Collect.DeviceID=ValueTable.Column(_x_)
+\nEnclosure.Collect.Status=ValueTable.Column(_x_)
+\nEnclosure.Collect.StatusInformation=ValueTable.Column(_x_)
+\nEnclosure.Collect.IntrusionStatus=ValueTable.Column(_x_)
+\nEnclosure.Collect.PowerConsumption=ValueTable.Column(_x_)
+\nEnclosure.Collect.EnergyUsage=ValueTable.Column(_x_)
+\n'
+
+#
+# Batteries
+#
+
+  'Discovery Battery':
+    'prefix': 'discbat'
+    'body': 'Battery.Discovery.InstanceTable=%Battery.Discovery.Source(_x_)%
+\nBattery.Discovery.Instance.DeviceID=InstanceTable.Column(_x_)
+\nBattery.Discovery.Instance.DisplayID=InstanceTable.Column(_x_)
+\nBattery.Discovery.Instance.AttachedToDeviceID=InstanceTable.Column(_x_)
+\nBattery.Discovery.Instance.AttachedToDeviceType=InstanceTable.Column(_x_)
+\nBattery.Discovery.Instance.ControllerNumber=InstanceTable.Column(_x_)
+\nBattery.Discovery.Instance.Vendor=InstanceTable.Column(_x_)
+\nBattery.Discovery.Instance.Model=InstanceTable.Column(_x_)
+\nBattery.Discovery.Instance.Type=InstanceTable.Column(_x_)
+\nBattery.Discovery.Instance.Chemistry=InstanceTable.Column(_x_)
+\n//Battery.Discovery.Instance.AdditionalInformation1=InstanceTable.Column(_x_)
+\n//Battery.Discovery.Instance.AdditionalInformation2=InstanceTable.Column(_x_)
+\n//Battery.Discovery.Instance.AdditionalInformation3=InstanceTable.Column(_x_)
+\n//Battery.Discovery.Instance.ParameterActivation.Status=InstanceTable.Column(_x_)
+\n//Battery.Discovery.Instance.ParameterActivation.Charge=InstanceTable.Column(_x_)
+'
+
+  'Collect Battery':
+    'prefix': 'collbat'
+    'body': 'Battery.Collect.Type="MultiInstance" // or MonoInstance
+\n
+\nBattery.Collect.ValueTable=%Battery.Collect.Source(_x_)%
+\nBattery.Collect.DeviceID=ValueTable.Column(_x_)
+\nBattery.Collect.Status=ValueTable.Column(_x_)
+\nBattery.Collect.StatusInformation=ValueTable.Column(_x_)
+\nBattery.Collect.Charge=ValueTable.Column(_x_)
+\n'
+
+#
+# Blades
+#
+
+  'Discovery Blade':
+    'prefix': 'discblade'
+    'body': 'Blade.Discovery.InstanceTable=%Blade.Discovery.Source(_x_)%
+\nBlade.Discovery.Instance.DeviceID=InstanceTable.Column(_x_)
+\nBlade.Discovery.Instance.DisplayID=InstanceTable.Column(_x_)
+\nBlade.Discovery.Instance.AttachedToDeviceID=InstanceTable.Column(_x_)
+\nBlade.Discovery.Instance.AttachedToDeviceType=InstanceTable.Column(_x_)
+\nBlade.Discovery.Instance.BladeName=InstanceTable.Column(_x_)
+\nBlade.Discovery.Instance.BladeModel=InstanceTable.Column(_x_)
+\nBlade.Discovery.Instance.SerialNumber=InstanceTable.Column(_x_)
+\n//Blade.Discovery.Instance.AdditionalInformation1=InstanceTable.Column(_x_)
+\n//Blade.Discovery.Instance.AdditionalInformation2=InstanceTable.Column(_x_)
+\n//Blade.Discovery.Instance.AdditionalInformation3=InstanceTable.Column(_x_)
+\n//Blade.Discovery.Instance.ParameterActivation.Status=InstanceTable.Column(_x_)
+\n//Blade.Discovery.Instance.ParameterActivation.PowerState=InstanceTable.Column(_x_)
+'
+
+  'Collect Blade':
+    'prefix': 'collblade'
+    'body': 'Blade.Collect.Type="MultiInstance" // or MonoInstance
+\n
+\nBlade.Collect.ValueTable=%Blade.Collect.Source(_x_)%
+\nBlade.Collect.DeviceID=ValueTable.Column(_x_)
+\nBlade.Collect.Status=ValueTable.Column(_x_)
+\nBlade.Collect.StatusInformation=ValueTable.Column(_x_)
+\nBlade.Collect.PowerState=ValueTable.Column(_x_)
+\n'
+
+#
+# CPU Cores
+#
+
+  'Discovery CPU Core':
+    'prefix': 'disccore'
+    'body': 'CpuCore.Discovery.InstanceTable=%CpuCore.Discovery.Source(_x_)%
+\nCpuCore.Discovery.Instance.DeviceID=InstanceTable.Column(_x_)
+\nCpuCore.Discovery.Instance.DisplayID=InstanceTable.Column(_x_)
+\nCpuCore.Discovery.Instance.AttachedToDeviceID=InstanceTable.Column(_x_)
+\n//CpuCore.Discovery.Instance.AdditionalInformation1=InstanceTable.Column(_x_)
+\n//CpuCore.Discovery.Instance.AdditionalInformation2=InstanceTable.Column(_x_)
+\n//CpuCore.Discovery.Instance.AdditionalInformation3=InstanceTable.Column(_x_)
+\n//CpuCore.Discovery.Instance.ParameterActivation.Status=InstanceTable.Column(_x_)
+\n//CpuCore.Discovery.Instance.ParameterActivation.UsedTimePercent=InstanceTable.Column(_x_)
+\n//CpuCore.Discovery.Instance.ParameterActivation.CurrentSpeed=InstanceTable.Column(_x_)
+'
+
+  'Collect CPU Core':
+    'prefix': 'collcore'
+    'body': 'CpuCore.Collect.Type="MultiInstance" // or MonoInstance
+\n
+\nCpuCore.Collect.ValueTable=%CpuCore.Collect.Source(_x_)%
+\nCpuCore.Collect.DeviceID=ValueTable.Column(_x_)
+\nCpuCore.Collect.Status=ValueTable.Column(_x_)
+\nCpuCore.Collect.StatusInformation=ValueTable.Column(_x_)
+\nCpuCore.Collect.UsedTimePercent=ValueTable.Column(_x_)
+\nCpuCore.Collect.CurrentSpeed=ValueTable.Column(_x_)
+\n'
+
+#
+# CPU
+#
+
+  'Discovery CPU':
+    'prefix': 'disccpu'
+    'body': 'Cpu.Discovery.InstanceTable=%Cpu.Discovery.Source(_x_)%
+\nCpu.Discovery.Instance.DeviceID=InstanceTable.Column(_x_)
+\nCpu.Discovery.Instance.DisplayID=InstanceTable.Column(_x_)
+\nCpu.Discovery.Instance.AttachedToDeviceID=InstanceTable.Column(_x_)
+\nCpu.Discovery.Instance.AttachedToDeviceType=InstanceTable.Column(_x_)
+\nCpu.Discovery.Instance.Vendor=InstanceTable.Column(_x_)
+\nCpu.Discovery.Instance.Model=InstanceTable.Column(_x_)
+\nCpu.Discovery.Instance.MaximumSpeed=InstanceTable.Column(_x_)
+\nCpu.Discovery.Instance.PowerConsumption=InstanceTable.Column(_x_)
+\nCpu.Discovery.Instance.CorrectedErrorWarningThreshold=InstanceTable.Column(_x_)
+\nCpu.Discovery.Instance.CorrectedErrorAlarmThreshold=InstanceTable.Column(_x_)
+\n//Cpu.Discovery.Instance.AdditionalInformation1=InstanceTable.Column(_x_)
+\n//Cpu.Discovery.Instance.AdditionalInformation2=InstanceTable.Column(_x_)
+\n//Cpu.Discovery.Instance.AdditionalInformation3=InstanceTable.Column(_x_)
+\n//Cpu.Discovery.Instance.ParameterActivation.Status=InstanceTable.Column(_x_)
+\n//Cpu.Discovery.Instance.ParameterActivation.PredictedFailure=InstanceTable.Column(_x_)
+\n//Cpu.Discovery.Instance.ParameterActivation.CorrectedErrorCount=InstanceTable.Column(_x_)
+\n//Cpu.Discovery.Instance.ParameterActivation.CurrentSpeed=InstanceTable.Column(_x_)
+'
+
+  'Collect CPU':
+    'prefix': 'collcpu'
+    'body': 'Cpu.Collect.Type="MultiInstance" // or MonoInstance
+\n
+\nCpu.Collect.ValueTable=%Cpu.Collect.Source(_x_)%
+\nCpu.Collect.DeviceID=ValueTable.Column(_x_)
+\nCpu.Collect.Status=ValueTable.Column(_x_)
+\nCpu.Collect.StatusInformation=ValueTable.Column(_x_)
+\nCpu.Collect.PredictedFailure=ValueTable.Column(_x_)
+\nCpu.Collect.CorrectedErrorCount=ValueTable.Column(_x_)
+\nCpu.Collect.CurrentSpeed=ValueTable.Column(_x_)
+\n'
+
+#
+# Disk Controller
+#
+
+  'Discovery Disk Controller':
+    'prefix': 'disccont'
+    'body': 'DiskController.Discovery.InstanceTable=%DiskController.Discovery.Source(_x_)%
+\nDiskController.Discovery.Instance.DeviceID=InstanceTable.Column(_x_)
+\nDiskController.Discovery.Instance.DisplayID=InstanceTable.Column(_x_)
+\nDiskController.Discovery.Instance.AttachedToDeviceID=InstanceTable.Column(_x_)
+\nDiskController.Discovery.Instance.AttachedToDeviceType=InstanceTable.Column(_x_)
+\nDiskController.Discovery.Instance.ControllerNumber=InstanceTable.Column(_x_)
+\nDiskController.Discovery.Instance.Vendor=InstanceTable.Column(_x_)
+\nDiskController.Discovery.Instance.Model=InstanceTable.Column(_x_)
+\nDiskController.Discovery.Instance.FirmwareVersion=InstanceTable.Column(_x_)
+\nDiskController.Discovery.Instance.BIOSVersion=InstanceTable.Column(_x_)
+\nDiskController.Discovery.Instance.DriverVersion=InstanceTable.Column(_x_)
+\nDiskController.Discovery.Instance.SerialNumber=InstanceTable.Column(_x_)
+\n//DiskController.Discovery.Instance.AdditionalInformation1=InstanceTable.Column(_x_)
+\n//DiskController.Discovery.Instance.AdditionalInformation2=InstanceTable.Column(_x_)
+\n//DiskController.Discovery.Instance.AdditionalInformation3=InstanceTable.Column(_x_)
+\n//DiskController.Discovery.Instance.ParameterActivation.ControllerStatus=InstanceTable.Column(_x_)
+\n//DiskController.Discovery.Instance.ParameterActivation.BatteryStatus=InstanceTable.Column(_x_)
+'
+
+  'Collect Disk Controller':
+    'prefix': 'collcont'
+    'body': 'DiskController.Collect.Type="MultiInstance" // or MonoInstance
+\n
+\nDiskController.Collect.ValueTable=%DiskController.Collect.Source(_x_)%
+\nDiskController.Collect.DeviceID=ValueTable.Column(_x_)
+\nDiskController.Collect.ControllerStatus=ValueTable.Column(_x_)
+\nDiskController.Collect.StatusInformation=ValueTable.Column(_x_)
+\nDiskController.Collect.BatteryStatus=ValueTable.Column(_x_)
+\n'
+
+#
+# Fan
+#

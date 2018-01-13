@@ -1,25 +1,3 @@
 '.source.hdf':
-  autocomplete:
-    symbols:
-      class:
-        selector: '.entity.name.class'
-        suggestions: [
-            'Enclosure'
-            'DiskController'
-            'Cpu'
-            'Memory'
-            'PhysicalDisk'
-            'LogicalDisk'
-            'Temperature'
-            'Voltage'
-            'Fan'
-            'PowerSupply'
-            'NetworkCard'
-            'CpuCore'
-            'OtherDevice'
-            'Blade'
-          ]
-        typePriority: 1000
-      '':
-        selector: '.source'
-        typePriority: 1
+  'editor':
+    'commentStart': '//'

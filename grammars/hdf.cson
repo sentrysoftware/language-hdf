@@ -28,7 +28,7 @@
       'endCaptures':
           '0':
               'name': 'punctuation.definition.string.end.hdf'
-      'name': 'string.quoted.single.hdf'
+      'name': 'string.quoted.double.hdf'
       'patterns': [
           {
               'match': '""'
@@ -424,6 +424,7 @@
         enclosure|
         diskcontroller|
         diskenclosure|
+        battery|
         cpu|
         memory|
         physicaldisk|
@@ -435,7 +436,11 @@
         networkcard|
         cpucore|
         otherdevice|
-        blade
+        blade|
+        robotic|
+        tapedrive|
+        lun|
+        led
       )\\b
       (
         (
@@ -547,6 +552,7 @@
               |currentspeed
               |speedpercent
               |errorcount
+              |correctederrorcount
               |predictedfailure
               |errorpercent
               |linkstatus

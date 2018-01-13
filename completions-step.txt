@@ -1,0 +1,7 @@
+Type
+
+Capture
+Duration
+TelnetOnly
+Text
+Timeout
