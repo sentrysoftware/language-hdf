@@ -1,0 +1,11 @@
+HTTP
+IPMI
+OsCommand
+SnmpGet
+SnmpTable
+TableJoin
+TableUnion
+TelnetInteractive
+UCS
+WBEM
+WMI

@@ -79,12 +79,12 @@
       'begin': '%'
       'beginCaptures':
           '0':
-              'name': 'punctuation.definition.string.begin.hdf'
+              'name': 'punctuation.definition.begin.hdf'
       'end': '%'
       'endCaptures':
           '0':
-              'name': 'punctuation.definition.string.end.hdf'
-      'name': 'string.quoted.other.hdf'
+              'name': 'punctuation.definition.end.hdf'
+      'name': 'variable.other.hdf'
   },
 
   # Comments
@@ -95,19 +95,78 @@
 
   # EmbeddedFile
   {
-      'begin': '(?i)embeddedfile\\(([0-9]+)\\):'
-      'beginCaptures':
-          '0':
-              'name': 'entity.name.function'
-          '1':
-              'name': 'constant.numeric.hdf'
-      'end': '(?i)embeddedfile\\(([0-9]+)\\)\\.end'
-      'endCaptures':
-          '0':
-              'name': 'entity.name.function'
-          '1':
-              'name': 'constant.numeric.hdf'
-      'name': 'meta.function'
+    'begin': '(?i)(embeddedfile)(\\()([0-9]+)(\\):)'
+    'beginCaptures':
+      '1':
+        'name': 'entity.name.function'
+      '2':
+        'name': 'punctuation.definition.arguments.begin.bracket.round.hdf'
+      '3':
+        'name': 'constant.numeric.hdf'
+      '4':
+        'name': 'punctuation.definition.arguments.end.bracket.round.hdf'
+    'contentName': 'source.awk'
+    'end': '(?i)(embeddedfile)(\\()(\\3)(\\))(\\.)(end)'
+    'endCaptures':
+      '1':
+        'name': 'entity.name.function'
+      '2':
+        'name': 'punctuation.definition.arguments.begin.bracket.round.hdf'
+      '3':
+        'name': 'constant.numeric.hdf'
+      '4':
+        'name': 'punctuation.definition.arguments.end.bracket.round.hdf'
+      '5':
+        'name': 'punctuation.delimiter.hdf'
+      '6':
+        'name': 'variable.parameter.hdf'
+    'name': 'meta.embedded.awk'
+    'patterns': [
+      {
+        'include': 'source.awk#line_comment'
+      }
+      # {
+      #   'include': 'source.awk#action'
+      # }
+      {
+        'include': 'source.awk#builtin_functions'
+      }
+      {
+        'include': 'source.awk#function_definition'
+      }
+      {
+        'include': 'source.awk#variable_language'
+      }
+      {
+        'include': 'source.awk#constant_language'
+      }
+      {
+        'include': 'source.awk#keyword'
+      }
+      {
+        'include': 'source.awk#operator'
+      }
+      {
+        'include': 'source.awk#regexp'
+      }
+      {
+        'include': 'source.awk#string'
+      }
+      {
+        'include': 'source.awk#numeric'
+      }
+      {
+        'include': 'source.awk#variable'
+      }
+      {
+        'match': '\\b(&&|\\|\\|)\\b'
+        'name': 'keyword.operator.awk'
+      }
+      {
+        'match': "[=|:]"
+        'name': 'punctuation.separator'
+      }
+    ]
   },
 
   # hdf header section
@@ -167,8 +226,25 @@
           (
             \\.
             (
-              type
-              |errormessage
+              ((type)
+                (\\s*=\\s*
+                  (
+                    HTTP
+                    |IPMI
+                    |OS
+                    |OsCommand
+                    |Process
+                    |Service
+                    |SNMP
+                    |TelnetInteractive
+                    |UCS
+                    |WBEM
+                    |WMI
+                  )\\b
+                )?
+              )
+              |
+              (errormessage
               |exclude
               |keeponly
               |servicename
@@ -190,7 +266,8 @@
               |authenticationtoken
               |resultcontent
               |forceserialization
-            )\\b
+              )\\b
+            )
           )?
         )?
       )?
@@ -202,7 +279,11 @@
         'name': 'entity.name.function.hdf'
       '5':
         'name': 'constant.numeric.hdf'
-      '7':
+      '9':
+        'name': 'variable.parameter.hdf'
+      '11':
+        'name': 'support.constant.hdf'
+      '12':
         'name': 'variable.parameter.hdf'
   },
 
@@ -220,76 +301,96 @@
         (
           \\.
           (
-            forceserialization
+            (
+              (type)
+              (
+                \\s*=\\s*
+                (
+                  HTTP
+                  |IPMI
+                  |OsCommand
+                  |SnmpGet
+                  |SnmpTable
+                  |TableJoin
+                  |TableUnion
+                  |TelnetInteractive
+                  |UCS
+                  |WBEM
+                  |WMI
+                )\\b
+              )?
+            )
+            |
+            (
+              forceserialization
 
-            |type
+              |snmpoid
 
-            |snmpoid
+              |snmptableoid
+              |snmptableselectcolumns
 
-            |snmptableoid
-            |snmptableselectcolumns
+              |wbemquery
+              |wbemnamespace
 
-            |wbemquery
-            |wbemnamespace
+              |commandline
+              |timeout
+              |executelocally
+              |excluderegexp
+              |keeponlyregexp
+              |removeheader
+              |removefooter
+              |separators
+              |selectcolumns
 
-            |commandline
-            |timeout
-            |executelocally
-            |excluderegexp
-            |keeponlyregexp
-            |removeheader
-            |removefooter
-            |separators
-            |selectcolumns
+              |lefttable
+              |righttable
+              |leftkeycolumn
+              |rightkeycolumn
+              |defaultrightline
+              |keytype
 
-            |lefttable
-            |righttable
-            |leftkeycolumn
-            |rightkeycolumn
-            |defaultrightline
-            |keytype
+              |table1
+              |table2
+              |table3
+              |table4
+              |table5
 
-            |table1
-            |table2
-            |table3
-            |table4
-            |table5
+              |query
+              |query1
+              |query2
+              |query3
+              |query4
+              |query5
+              |query6
+              |query7
+              |query8
+              |query9
+              |query10
+              |query11
+              |query12
+              |query13
+              |query14
+              |query15
+              |excluderegexp
+              |keeponlyregexp
+              |selectcolumns
 
-            |query
-            |query1
-            |query2
-            |query3
-            |query4
-            |query5
-            |query6
-            |query7
-            |query8
-            |query9
-            |query10
-            |query11
-            |query12
-            |query13
-            |query14
-            |query15
-            |excluderegexp
-            |keeponlyregexp
-            |selectcolumns
+              |port
+              |excluderegexp
+              |keeponlyregexp
+              |removeheader
+              |removefooter
+              |separators
+              |selectcolumns
 
-            |port
-            |excluderegexp
-            |keeponlyregexp
-            |removeheader
-            |removefooter
-            |separators
-            |selectcolumns
-
-            |url
-            |method
-            |body
-            |header
-            |authenticationtoken
-            |resultcontent
-          )\\b
+              |url
+              |method
+              |body
+              |header
+              |authenticationtoken
+              |resultcontent
+            )\\b
+          )
         )?
       )?
     '
@@ -298,7 +399,11 @@
         'name': 'entity.name.function.hdf'
       '3':
         'name': 'constant.numeric.hdf'
-      '5':
+      '7':
+        'name': 'variable.parameter.hdf'
+      '9':
+        'name': 'support.constant.hdf'
+      '10':
         'name': 'variable.parameter.hdf'
   },
 
@@ -315,15 +420,32 @@
         (
           \\.
           (
-            telnetonly
+            (
+              (type)
+              (
+                \\s*=\\s*
+                (
+                  GetAvailable
+                  |GetUntilPrompt
+                  |SendPassword
+                  |SendText
+                  |SendUsername
+                  |Sleep
+                  |WaitFor
+                  |WaitForPrompt
+                )\\b
+              )?
+            )
+            |
+            (
+              telnetonly
 
-            |type
-            |capture
-            |duration
-            |text
-            |timeout
-
-          )\\b
+              |capture
+              |duration
+              |text
+              |timeout
+            )\\b
+          )
         )?
       )?
     '
@@ -332,7 +454,11 @@
         'name': 'entity.name.function.hdf'
       '3':
         'name': 'constant.numeric.hdf'
-      '5':
+      '7':
+        'name': 'variable.parameter.hdf'
+      '9':
+        'name': 'support.constant.hdf'
+      '10':
         'name': 'variable.parameter.hdf'
   },
 
@@ -346,58 +472,89 @@
     'match': '(?x)(?i)
       (compute)\\b
       (
-        \\(([0-9]+)\\)(
+        \\(([0-9]+)\\)
+        (
           \\.
           (
-            type
+            (
+              (type)
+              (
+                \\s*=\\s*
+                (
+                  Add
+                  |Awk
+                  |And
+                  |ArrayTranslate
+                  |Convert
+                  |Divide
+                  |DuplicateColumn
+                  |ExcludeMatchingLines
+                  |Extract
+                  |ExtractPropertyFromWbemPath
+                  |Json2Csv
+                  |KeepColumns
+                  |KeepOnlyMatchingLines
+                  |LeftConcat
+                  |Multiply
+                  |PerBitTranslation
+                  |Replace
+                  |RightConcat
+                  |Substract
+                  |SubString
+                  |Translate
+                )\\b
+              )?
+            )
+            |
+            (
+              |column
 
-            |column
+              |translationtable
 
-            |translationtable
+              |regexp
+              |valuelist
 
-            |regexp
-            |valuelist
+              |awkscript
+              |excluderegexp
+              |keeponlyregexp
+              |separators
+              |selectcolumns
 
-            |awkscript
-            |excluderegexp
-            |keeponlyregexp
-            |separators
-            |selectcolumns
+              |string
 
-            |string
+              |replaceby
+              |replace
 
-            |replaceby
-            |replace
+              |subcolumn
+              |subseparators
 
-            |subcolumn
-            |subseparators
+              |propertyname
 
-            |propertyname
+              |multiplyby
+              |divideby
+              |add
+              |substract
+              |and
 
-            |multiplyby
-            |divideby
-            |add
-            |substract
-            |and
+              |start
+              |length
 
-            |start
-            |length
+              |columnnumbers
 
-            |columnnumbers
+              |bitlist
+              |bittranslationtable
 
-            |bitlist
-            |bittranslationtable
+              |conversiontype
 
-            |conversiontype
+              |translationtable
+              |arrayseparator
+              |resultseparator
 
-            |translationtable
-            |arrayseparator
-            |resultseparator
-
-            |entrykey
-            |properties
-            |separator
-          )\\b
+              |entrykey
+              |properties
+              |separator
+            )\\b
+          )
         )?
       )?
     '
@@ -406,7 +563,11 @@
         'name': 'entity.name.function.hdf'
       '3':
         'name': 'constant.numeric.hdf'
-      '5':
+      '7':
+        'name': 'variable.parameter.hdf'
+      '9':
+        'name': 'support.constant.hdf'
+      '10':
         'name': 'variable.parameter.hdf'
   },
 
@@ -636,11 +797,11 @@
   # Reference to EmbeddedFile
   {
     'match': '(?x)(?i)
-    =\\s*
-    (embeddedfile)
-    (
-      \\(([0-9]+)\\)
-    )?
+      =\\s*
+      (embeddedfile)
+      (
+        \\(([0-9]+)\\)
+      )?
     '
     'captures':
       '1':

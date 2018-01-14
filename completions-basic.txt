@@ -148,6 +148,7 @@ Enclosure.Collect.Source
 Enclosure.Collect.Status
 Enclosure.Collect.StatusInformation
 Enclosure.Collect.Type
+Enclosure.Collect.ValueTable
 Enclosure.Discovery
 Enclosure.Discovery.Instance
 Enclosure.Discovery.Instance.AdditionalInformation1

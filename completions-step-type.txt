@@ -1,0 +1,8 @@
+GetAvailable
+GetUntilPrompt
+SendPassword
+SendText
+SendUsername
+Sleep
+WaitFor
+WaitForPrompt
