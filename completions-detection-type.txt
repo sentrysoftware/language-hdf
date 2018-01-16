@@ -5,7 +5,6 @@ OsCommand
 Process
 Service
 SNMP
-SNMP\n$0.SnmpGet="${1:OID}"\n$0.SnmpGetNext="${1:OID}"\n$0.ExpectedResult="${2:Regex}"
 TelnetInteractive
 UCS
 WBEM
