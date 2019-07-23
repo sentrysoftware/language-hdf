@@ -12,6 +12,7 @@ ConversionType
 DivideBy
 EntryKey
 ExcludeRegExp
+Json2Csv
 KeeponlyRegExp
 Length
 MultiplyBy
@@ -31,3 +32,4 @@ SubSeparators
 Substract
 TranslationTable
 ValueList
+XML2Csv

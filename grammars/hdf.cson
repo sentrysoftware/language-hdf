@@ -502,6 +502,7 @@
                   |Substract
                   |SubString
                   |Translate
+                  |XML2Csv
                 )\\b
               )?
             )
