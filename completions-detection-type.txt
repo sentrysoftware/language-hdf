@@ -1,5 +1,6 @@
 HTTP
 IPMI
+KMVersion
 OS
 OsCommand
 Process
