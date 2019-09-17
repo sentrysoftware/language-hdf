@@ -6,6 +6,9 @@ AuthenticationToken
 Body
 CommandLine
 DefaultRightLine
+EntryConcatMethod
+EntryConcatStart
+EntryConcatEnd
 ExcludeRegExp
 ExecuteForEachEntryOf
 ExecuteLocally
