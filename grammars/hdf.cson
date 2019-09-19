@@ -266,6 +266,10 @@
               |authenticationtoken
               |resultcontent
               |forceserialization
+              |executeforeachentryof
+              |entryconcatmethod
+              |entryconcatstart
+              |entryconcatend
               )\\b
             )
           )?
@@ -323,6 +327,10 @@
             |
             (
               forceserialization
+              |executeforeachentryof
+              |entryconcatmethod
+              |entryconcatstart
+              |entryconcatend
 
               |snmpoid
 
