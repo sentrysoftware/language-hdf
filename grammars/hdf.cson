@@ -327,7 +327,7 @@
             |
             (
               forceserialization
-              |executeforeachentryf
+              |executeforeachentryof
               |entryconcatmethod
               |entryconcatstart
               |entryconcatend
