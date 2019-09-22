@@ -169,6 +169,27 @@
     ]
   },
 
+  # EmbeddedFile(x).Type
+  {
+    'match': '(?x)(?i)
+      ^\\s*
+      (embeddedfile)(\\()([0-9]+)(\\))(\\.)(type)
+      '
+    'captures':
+      '1':
+        'name': 'entity.name.function'
+      '2':
+        'name': 'punctuation.definition.arguments.begin.bracket.round.hdf'
+      '3':
+        'name': 'constant.numeric.hdf'
+      '4':
+        'name': 'punctuation.definition.arguments.end.bracket.round.hdf'
+      '5':
+        'name': 'punctuation.delimiter.hdf'
+      '6':
+        'name': 'variable.parameter.hdf'
+  },
+
   # hdf header section
   {
     'match': '(?x)(?i)
@@ -231,6 +252,7 @@
                   (
                     HTTP
                     |IPMI
+                    |KMVersion
                     |OS
                     |OsCommand
                     |Process
@@ -266,10 +288,7 @@
               |authenticationtoken
               |resultcontent
               |forceserialization
-              |executeforeachentryof
-              |entryconcatmethod
-              |entryconcatstart
-              |entryconcatend
+              |version
               )\\b
             )
           )?
