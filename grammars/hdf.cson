@@ -777,6 +777,7 @@
               |illegalrequesterrorcount
               |zerobuffercreditcount
               |powerstate
+              |enduranceremaining
             )\\b
           )?
         )
