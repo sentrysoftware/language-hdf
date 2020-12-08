@@ -414,6 +414,7 @@ PhysicalDisk
 PhysicalDisk.Collect
 PhysicalDisk.Collect.DeviceID
 PhysicalDisk.Collect.DeviceNotReaderErrorCount
+PhysicalDisk.Collect.EnduranceRemaining
 PhysicalDisk.Collect.ErrorCount
 PhysicalDisk.Collect.HardErrorCount
 PhysicalDisk.Collect.IllegalRequestErrorCount
