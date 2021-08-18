@@ -629,7 +629,8 @@
         robotic|
         tapedrive|
         lun|
-        led
+        led|
+        vm
       )\\b
       (
         (
@@ -712,6 +713,7 @@
                   |remotephysicaladdresstype
                   |name
                   |availablepathwarning
+                  |hostname
 
                   |(parameteractivation)\\b
                   (
@@ -778,6 +780,7 @@
               |zerobuffercreditcount
               |powerstate
               |enduranceremaining
+              |powershare
             )\\b
           )?
         )

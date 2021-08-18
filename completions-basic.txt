@@ -575,6 +575,28 @@ Temperature.Discovery.Instance.WarningThreshold
 Temperature.Discovery.InstanceTable
 
 
+VM
+VM.Collect
+VM.Collect.DeviceID
+VM.Collect.PowerState
+VM.Collect.PowerShare
+VM.Collect.Type
+VM.Collect.ValueTable
+VM.Discovery
+VM.Discovery.Instance
+VM.Discovery.Instance.AdditionalInformation1
+VM.Discovery.Instance.AdditionalInformation2
+VM.Discovery.Instance.AdditionalInformation3
+VM.Discovery.Instance.AttachedToDeviceID
+VM.Discovery.Instance.AttachedToDeviceType
+VM.Discovery.Instance.Hostname
+VM.Discovery.Instance.DeviceID
+VM.Discovery.Instance.DisplayID
+VM.Discovery.Instance.ParameterActivation.PowerConsumption
+VM.Discovery.Instance.ParameterActivation.PowerState
+VM.Discovery.InstanceTable
+
+
 Voltage
 Voltage.Collect
 Voltage.Collect.DeviceID

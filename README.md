@@ -19,5 +19,5 @@ This package adds support for Hardware Description File (for Hardware Connectors
 ## What is an HDF?
 
 Please refer to:
-* [Hardware Sentry KM for PATROL by Sentry Software](https://www.sentrysoftware.com/products/km-hardware-sentry.asp)
+* [Hardware Sentry KM for PATROL by Sentry Software](https://www.sentrysoftware.com/products/km-hardware-sentry.html)
 * [Hardware Connectors Library](https://www.sentrysoftware.com/library/hc/)
