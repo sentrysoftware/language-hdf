@@ -1,6 +1,6 @@
 {
   "name": "language-hdf",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Hardware Description File (for Hardware Connectors, *.hdfs) language support in Atom",
   "engines": {
     "atom": "*"
