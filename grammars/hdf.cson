@@ -610,27 +610,28 @@
     'match': '(?x)(?i)
       ^\\s*
       (
-        enclosure|
+        battery|
+        blade|
+        cpu|
+        cpucore|
         diskcontroller|
         diskenclosure|
-        battery|
-        cpu|
-        memory|
-        physicaldisk|
-        logicaldisk|
-        temperature|
-        voltage|
+        enclosure|
         fan|
-        powersupply|
+        gpu|
+        led|
+        logicaldisk|
+        lun|
+        memory|
         networkcard|
-        cpucore|
         otherdevice|
-        blade|
+        physicaldisk|
+        powersupply|
         robotic|
         tapedrive|
-        lun|
-        led|
-        vm
+        temperature|
+        vm|
+        voltage
       )\\b
       (
         (
@@ -643,77 +644,80 @@
                 (instance)\\b
                 \\.
                 (
-                  deviceid
-                  |controllernumber
-                  |attachedtodeviceid
-                  |attachedtodevicetype
-                  |displayid
-
-                  |biosversion
-                  |model
-                  |serialnumber
-                  |type
-                  |vendor
-                  |additionalinformation1
+                  additionalinformation1
                   |additionalinformation2
                   |additionalinformation3
-                  |firmwareversion
-                  |fantype
-                  |raidlevel
-                  |size
-                  |powersupplytype
-                  |temperaturetype
-                  |chemistry
-                  |bladename
-                  |blademodel
-                  |maximumspeed
-                  |powerconsumption
-                  |correctederrorwarningthreshold
-                  |correctederroralarmthreshold
-                  |driverversion
-                  |warningthreshold
-                  |alarmthreshold
-                  |percentwarningthreshold
-                  |percentalarmthreshold
-                  |color
-                  |onstatus
-                  |offstatus
-                  |blinkingstatus
+                  |additionallabel
                   |alarmoncolor
-                  |warningoncolor
-                  |logicaldisktype
-                  |useforcapacityreport
-                  |localdevicename
-                  |remotedevicename
+                  |alarmthreshold
                   |arrayname
-                  |expectedpathcount
-                  |wwn
-                  |errorcountwarningthreshold
-                  |errorcountalarmthreshold
+                  |attachedtodeviceid
+                  |attachedtodevicetype
+                  |availablepathwarning
+                  |bandwidth
+                  |biosversion
+                  |blademodel
+                  |bladename
+                  |blinkingstatus
+                  |chemistry
+                  |color
+                  |controllernumber
+                  |correctederroralarmthreshold
+                  |correctederrorwarningthreshold
+                  |devicehostname
+                  |deviceid
                   |devicetype
-                  |physicaladdress
-                  |physicaladdresstype
+                  |displayid
+                  |driverversion
+                  |errorcountalarmthreshold
+                  |errorcountalarmthreshold
+                  |errorcountwarningthreshold
+                  |errorcountwarningthreshold
+                  |expectedpathcount
+                  |fantype
+                  |firmwareversion
+                  |hostname
+                  |localdevicename
                   |logicaladdress
                   |logicaladdresstype
-                  |additionallabel
-                  |valuewarningthreshold
-                  |valuealarmthreshold
-                  |usagecountwarningthreshold
-                  |usagecountalarmthreshold
-                  |powersupplypower
-                  |robotictype
-                  |errorcountwarningthreshold
-                  |errorcountalarmthreshold
-                  |voltagetype
+                  |logicaldisktype
                   |lowerthreshold
-                  |upperthreshold
-                  |bandwidth
-                  |devicehostname
+                  |maximumspeed
+                  |memoryutilizationwarningthreshold
+                  |memoryutilizationalarmthreshold
+                  |model
+                  |name
+                  |offstatus
+                  |onstatus
+                  |percentalarmthreshold
+                  |percentwarningthreshold
+                  |physicaladdress
+                  |physicaladdresstype
+                  |powerconsumption
+                  |powersupplypower
+                  |powersupplytype
+                  |raidlevel
+                  |remotedevicename
                   |remotephysicaladdress
                   |remotephysicaladdresstype
-                  |name
-                  |availablepathwarning
-                  |hostname
+                  |robotictype
+                  |serialnumber
+                  |size
+                  |temperaturetype
+                  |type
+                  |upperthreshold
+                  |usagecountalarmthreshold
+                  |usagecountwarningthreshold
+                  |usedtimepercentwarningthreshold
+                  |usedtimepercentalarmthreshold
+                  |useforcapacityreport
+                  |valuealarmthreshold
+                  |valuewarningthreshold
+                  |vendor
+                  |voltagetype
+                  |warningoncolor
+                  |warningthreshold
+                  |wwn
 
                   |(parameteractivation)\\b
                   (
@@ -731,56 +735,64 @@
             \\.(
               type
               |valuetable
-              |deviceid
 
-              |statusinformation
-              |status
-              |controllerstatus
-              |batterystatus
-              |temperature
-              |voltage
-              |speed
-              |currentspeed
-              |speedpercent
-              |errorcount
-              |correctederrorcount
-              |predictedfailure
-              |errorpercent
-              |linkstatus
-              |usedwatts
-              |intrusionstatus
-              |charge
-              |usedtimepercent
-              |color
-              |linkspeed
-              |duplexmode
-              |receivedbytes
-              |transmittedbytes
-              |receivedpackets
-              |transmittedpackets
-              |movecount
-              |needscleaning
-              |mountcount
-              |unmountcount
-              |powerconsumption
-              |energyusage
-              |timeleft
-              |usagecount
-              |unallocatedspace
               |availablepathcount
               |availablepathinformation
-              |statusinformation
-              |harderrorcount
-              |mediaerrorcount
+              |batterystatus
+              |charge
+              |color
+              |controllerstatus
+              |correctederrorcount
+              |currentspeed
+              |decoderusedtime
+              |decoderusedtimepercent
+              |deviceid
               |devicenotreadyerrorcount
-              |nodeviceerrorcount
-              |transporterrorcount
-              |recoverableerrorcount
-              |illegalrequesterrorcount
-              |zerobuffercreditcount
-              |powerstate
+              |duplexmode
+              |encoderusedtime
+              |encoderusedtimepercent
               |enduranceremaining
+              |energyusage
+              |errorcount
+              |errorpercent
+              |harderrorcount
+              |illegalrequesterrorcount
+              |intrusionstatus
+              |linkspeed
+              |linkstatus
+              |mediaerrorcount
+              |memoryutilization
+              |mountcount
+              |movecount
+              |needscleaning
+              |nodeviceerrorcount
+              |powerconsumption
               |powershare
+              |powerstate
+              |predictedfailure
+              |receivedbytes
+              |receivedbytesrate
+              |receivedpackets
+              |recoverableerrorcount
+              |speed
+              |speedpercent
+              |status
+              |statusinformation
+              |statusinformation
+              |temperature
+              |timeleft
+              |transmittedbytes
+              |transmittedbytesrate
+              |transmittedpackets
+              |transporterrorcount
+              |unallocatedspace
+              |unmountcount
+              |usagecount
+              |usedtime
+              |usedtimepercent
+              |usedwatts
+              |voltage
+              |zerobuffercreditcount
             )\\b
           )?
         )
